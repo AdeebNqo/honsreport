@@ -1,0 +1,71 @@
+\begin{savequote}[75mm] 
+Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo.
+\qauthor{Quoteauthor Lastname} 
+\end{savequote}
+
+\chapter{Cloudlet design}
+\label{chapterfour}
+
+\section{Overview}
+
+This chapter discusses the implementation and design choices that went into the creation of the cloudlet and the file service that accompanies it. It also explains the need for separation of the main cloudlet platform
+and the services. A brief description of the cloudlet platform and the actions it supports is provided.
+
+\section{Design goals and restrictions}
+The cloudlet should be robust, that is, it should be able to register and not crash in the case of frequent connections and disconnections. This is crucial as users of mobile devices are likely to move in and out or
+range. Also, the hardware should be used optimally to ensure maximum performance. Common functions such as searching should be optimal, however, there has to be a balance between computational efficiency and battery
+use. The components should not result in high battery consumption. The cloudlet will be used for supporting interactions between a relatively small number of users, therefore algorithms of $O(n)$ where $n$ is the number
+of users, should be sufficient. The implementation of functions and/or software that already exists should minimal (if any). Third party libraries which may possibly be optimized, should be used to reduce the amount
+of work. This is a platform that should be able to support numerous services therefore is should be easy and quick to introduce new services.\newline
+
+Development time is limited therefore an abundance of alternative machine to machine communication mechanisms, algorithms, databases and services cannot be explored. Also, computation power, storage space
+and battery life are limited. This means that the services developed cannot be computation and memory intensive. The range of the WiFi adapter is not large, the signal is weak and as a result, it is interrupted by
+walls. A solution to this would be use the mobile devices as WiFi repeaters, however, this function will not be developed due to it's complexity and the existing time constraints. The chosen operating system for the
+Raspberry Pi is Arch-Linux Arm. This choice is largely because Arch-Linux ARM is lightweight compared to the Linux distributions which are compatible with the Raspberry Pi. This choice, however, introduces the restriction
+that all packages need to be compatible with Arch-Linux ARM.
+
+\section{User identification}
+
+The cloudlet requires a local network in order to facilitate for communication between the various devices. The network is brought into existence by creating a WiFi access point. The IP addresses in the network are
+dynamically allocated using a DHCP server (dnsmasq). However, the identification of users in the cloudlet using the network assigned IP address is not suitable. Consider the following scenario: There are three users
+A, B and C within a cloudlet and are identified with 10.10.0.1, 10.10.0.2 and 10.10.03 respectively.
+\begin{itemize}
+\item A (10.10.0.1) shares file with only B (10.10.0.2). C (10.10.03) does not have access to the file.
+\item Both B (10.10.0.2) and C (10.10.03) disconnect. The shared file is still on the cloudlet.
+\item B and C reconnect, however, B is allocated the address 10.10.03 and C, 10.10.0.2 by the DHCP server.
+\end{itemize}
+This will result in user C having access to the file shared by A with B. A solution to this is to identify users using the WiFi MAC addresses. This is vulnerable to MAC address spoofing. However, addressing MAC address
+spoofing is beyond the scope of this project.
+
+\section{Communication}
+\label{communication}
+
+The communication between these the clients and the cloudlet is not done through raw sockets. Instead, a messaging system that uses the publish-subscribe messaging pattern is used. Specificaly, device-cloudlet
+communication is done through the MQTT protocol. The reasons for using MQTT are that it has faster “response and throughput, and low battery and bandwidth usage”\cite{Holmwebsite}. In addition, MQTT has a small
+code footprint\cite{mqttwebsite}. Using an existing MQTT allows us to reuse trusted software with a numerous features. The current MQTT broker that is used is Mosquitto, an open-source broker that implements version 3.1 of the MQTT protocol. ZeroMq has been investigated as an alternate technology.
+ZeroMq is a messaging library which not only supports the publish/subscribe pattern but also the push/pull, and router/dealer patterns. One of the problems discovered, however, was that ZeroMq is not easy to setup
+for receiving responses at the client side as compared to mosquitto. In addition, the documentation was found to contain the following:
+
+\begin{verbatim}
+There is one more important thing to know about PUB-SUB sockets:
+you do not know precisely when a subscriber starts to get
+messages. Even if you start a subscriber, wait a while, and
+then start the publisher, the subscriber will always miss the
+first messages that the publisher sends
+\end{verbatim}
+
+In an attempt to avoid unexpected behaviour, ZeroMq was not pursued further. It is worth noting that even though ZeroMq exhibited strange behaviour, it had the advantage that it had support for various languages
+and had extensive documentation.
+
+\section{Programming Language}
+Time is limited, therefore a programming language already known by the backend developers had to be used for development. This would ensure software quality and save time. The languages to choose from where Java, C++ and
+Python. The chosen language was python. Using python ensures that the code is readable which makes maintenance easier. Python code is also platform independent. There are also a large number of third party library in addition
+to the large standard library which can be used.
+
+\subsection{Tools}
+Model B of the Raspberry Pi is used to host the cloudlet. It was chosen because it has a better set of features compared to model A, these features include larger RAM. Model B+ was not used as it was not released at the time the project started. The differences between the three
+models can be found at the raspberry pi website \url{http://www.raspberrypi.org/}. Model B of the Raspberry Pi is affordable and has extensive support on the Internet compared to other single board computers thereby making it more attractive. The package which is a standard for creating wireless access points, hostapd, is used. A custom version which has been developed by Jens Segers is used. The source code can be found at \url{https://github.com/jenssegers/RTL8188-hostapd}. All other versions do not work because the chipset on the
+Wi-Fi adapter is not compatible with the default WiFi drivers on a Linux system. The chosen adapter is a Realtek Semiconductor Corp. RTL8188CUS 802.11n WLAN adapter. This is because it is affordable. This has been circumvented by using a custom version of hostapd with uses the rtl871xdrv driver. The package is released under the GPL v2 license.
+
+\subsection{Starting cloudlet}
+The raspberry pi that hosts the cloudlet does not have a display. This makes it diffcult to start and stop the cloudlet. The cloudlet has been made to start on boot when power is provided for the device. This approach requires little physical interaction from the owner thus a display is not neccessary. The `systemd` package in ArchLinux is used to start the cloudlet process and it's various components when the Raspberry Pi boots. It is chosen because it is already installed by default and is used by other system tools thus cannot be uninstalled. This allows better use of the memory available. Choosing the order in which the components start is as follows: (1) The network interface used is given an IP using `ifconfig wlan0 10.10.0.51`,  (2) the DHCP server is started using `systemctl start dnsmasq`, (3) the wifi access point is created using the custom hostapd as follows `hostapd /etc/hostapd/hostapd.conf` and the last step starts the cloudlet by starting the controller using `python2.7 controller.py -p 9999`. All the above actions are carried out by a script which executes when the computer boots. The script is not executed until the network interfaces are ready. This order ensures that starting the cloudlet never fails as certain components are ready.

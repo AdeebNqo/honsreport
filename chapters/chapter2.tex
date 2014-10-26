@@ -1,0 +1,157 @@
+\begin{savequote}[75mm] 
+This is some random quote to start off the chapter.
+\qauthor{Firstname lastname} 
+\end{savequote}
+
+\chapter{Previous works}
+\label{chaptertwo}
+
+This chapter discusses and explores previous work related to the back-end of
+the proposed system. The system will run on an embedded system, therefore re-
+sources are constrained. Specifically, there is limited memory space and battery
+life. In addition, it is of importance that the system have low latency in client
+to cloudlet interaction. Also, it is essential that a storage medium that is fast and does not consume large quantities of power is used. In this chapter, we
+will discuss the following:
+
+	\begin{itemize}
+	\itemsep0em
+	\item Previous work on related to cloudlets.
+	\item Databases for constrained environments.
+	\item Increasing the range of the network signal.
+	\end{itemize}
+
+There is existing literature on the concepts of cloudlets. A large portion of this existing work is addressing the offloading of computation from mobile device to a cloudlet to overcome the computation limitations of mobile devices. For instance, Ling et al\cite{ling2011ar} have proposed the use of cloudlets to improve augmented reality for mobile phones. The work done by Verbelen et al\cite{RefWorks:93} is also of the same nature. This kind of research, albeit it presents great applications, makes the assumption that cloudlets have relatively abundant computing power. The interest of this project is the creation of a cloudlet that can operate effectively even when resources are constrained. The lack of literature pertaining to resource constrained cloudlets means that it necessary to look at work that benchmarks various databases and data compression schemes, and provides results on which one is suitable for an embedded system, if any. Miettinen et al\cite{RefWorks:90} state, in their analysis of mobile cloud computing, that offloading of computation from the cellphone to the cloud is of great benefit if the cost exceeds the energy cost of the additional communication.
+
+\section{Related work}
+
+\subsection{Resource constrained environments}
+It has been proposed that cloudlets can play a vital role in hostile environments\cite{RefWorks:107}. These are environments
+where there is a weak networking infrastructure or geographical region where recovery is under-way after a natural disaster or terrorist attack, or simply an environment where there is a military presence. Satyanarayanan et al\cite{RefWorks:107} highlight that cloudlets can be helpful because cloudlets offer services which are needed by mobile device users. These
+services are the overcoming of resource limitations, authoritative sourcing of data and synchronizing multi-user collaboration. Satyanarayanan et al\cite{RefWorks:107} also propose the following scenerios where cloudlets can be of vital importance:
+
+\begin{itemize}
+
+\item \textbf{Disaster Recovery} \\ When disasters such as earthquakes, bombings, etc have occured, there is often loss of buildings and deformation of terrain. Useful tools such as maps and GPS become obsolete. A bottom-up approach to recreating repositories of information about the current state of the roads, buildings, etc is most the efficient. A crowd-sourced approach to imaging and geolocation by mobile users on the scene to a nearby cloudlet which will then upload the data to the cloud would assist rescue teams.
+
+\item \textbf{Military operations} \\ The US Department of Defense was developed and testing a system named "Land Warrior" around the 1990s\cite{usdefense}. The system comes with, among other things, a computer processor which is ``fused with radios and a Global Positioning System locator. A hand grip wired to the pack and attached to the soldier's chest acts as a computer mouse and also allows the wearer to change screens, key on the radio, change frequencies and send digital information''. It is undoubtedly innovative but it is also susceptible to
+wireless jamming and denial of service attacks as it needs to contact a distant cloud. Another challenge this system has is that of power. The department states that the ``current batteries last about 150 minutes with all systems running''. The sharing of computation among an operating army unit can increase battery life and possibly save the lives of some soldiers in their times of need. The Land Warrior does not address many issues, this largely because it is outdated.
+\end{itemize}
+
+\noindent One can deduct from the aforementioned use cases that cloudlets have practical uses. In the case where it has been established that embedded systems are practical for cloudlet instantiation, they may add more value as they will afford one with portability and affordability. The issues Satyanarayanan et al\cite{RefWorks:107} identify which need to be addressed in cloudlets for the aforementioned environments is that of trust and cloudlet discovery, as that it could lead to wireless jamming, physical destruction, etc.
+
+\subsection{Offloading computation}
+
+As mentioned before, the prominent use of cloudlet is computation offloading. It is known that mobile devices have limited computation power. There are numerous reasons why that is the case.
+For instance, in order for manufacturers to have portability and general usability of the mobile devices, they limit the computation ability of mobile devices. This is because an increase in
+computation power may cause, among other things, an increase in the heat discharged by the hardware. A solution to overcome limited computation power, as proposed by Giurgiu et al\cite{giurgiu2009calling},
+is the use of the cloud to offload computation. This solution is effective, however, it is severely affected by the fact that clouds are located at a distance. The problem with it, as
+identified by Satyanarayanan et al\cite{satyanarayanan2009case} is that it suffers from bandwidth-induced delays and latency. Verbelen et al\cite{RefWorks:93} have proposed, like a number of
+researchers, the use of cloudlets to offload computation from the mobile phone to a nearby cloudlet.\newline
+
+\noindent The cloudlets they propose are in the form of a laptop or computer in a wide area network. It is without a doubt that offloading of computation to cloudlet has great benefits to mobile device users as it can improve the battery life of mobile devices. There have been attempts to test
+whether offloading computation to cloudlet would have benefits in practise. An example of such is the study done by Verbelen and colleagues\cite{RefWorks:93}, they used augmented reality on mobile devices as a use case in order to evaluate their proposed system which offloads computation to cloudlets. Their system puts emphasis on the decoupling of the augmented reality processing components.
+This is because only certain parts of the system are offloaded. The results they reported show that the cloud is not suited for an application that has real-time constraints as compared to a cloudlet for offloading computation. In essence, the cloudlet solves the problem of latency when communicating with a distant cloud. It should be noted that embedded systems can also be used for the same task.
+In such cases, one could overcome network range limitations through the use WiFi Antenna. The problem, however, is the resulting increase in power usage due to the Antenna. The question at hand for
+embedded systems is understanding what tools to use to minimize power consumption but maintain a reasonable cloudlet.\newline
+
+\subsection{PiCloud}
+
+A data center can be viewed as a facility ``that houses and maintains back-end information technology (IT) systems and data stores—its mainframes, servers and databases''\footnote{http://www.gartner.com/it-glossary/data-center/}.
+The infrastructure for a data center is expensive and this means that individuals without abundant finances are at a loss. Tso et al\cite{tso2013glasgow} have attempted to address this by constructing a ``scale model of a data center composed of clusters of Raspberry Pi devices". This proposed model of a data center is named PiCloud. PiCloud is made up of 56 Model B raspberry Pis.
+It is important to note that PiCloud is cheaper than commercial servers and can effectively replicate cloud data center architectures. They also specify that they use Raspbian because it “comes with over 35,000 pre-compiled software packages”. PiClould is reported to an effective replacement for commercial servers. Unfortunately, as one might expect, PiCloud is not suited for computation intensive tasks. The work done by Tso et al\cite{tso2013glasgow}, even though it has implications to the proposed system, is very limited. PiCloud allows one to overcome the limitations of simulation systems such as iCanCloud
+and CloudSim. This advantage is impractical considering that 56 Model B raspberry Pis cost approximately 24,211 ZAR. Tso et al\cite{tso2013glasgow} have shown PiCloud can effectively replicate cloud data center architectures therefore there is a possibility that the Raspberry Pi can be a practical cloudlet. This means that a Raspberry Pi using a bulky operating system can effectively replicate cloud data center architectures. Therefore it is possible that the proposed system will perform better as it will use an optimized operating system.\newline
+
+
+\section{Databases}
+
+A cloudlet, like a cloud, is a platform where the sharing of multimedia content is easy. It is possible to use a cloudlet as a server that maintains a list of users who want to share files. The exchange of files
+could be client-to-client. This approach of making the file sharing service means that the Raspberry Pi will only act as a broker. This is similar to how the Direct Connect (NMDC) protocol works\footnote{\url{http://nmdc.sourceforge.net/NMDC.html}}. NeoModus Direct Connect protocol is a peer-to-peer file sharing protocol. This approach, unfortunately, does not scale well when building a system that can support a number of services in addition to file sharing. It essentially means that cloudlet will an appliance capable of only file sharing.
+Services such as document collaboration would be difficult and inefficient when the files are stored on the mobile devices. This is largely because the client-server communication would be cumbersome. The solution
+to this, is to require files to be transferred to the cloudlet and then actions like sharing and editing be carried out. This requirement means that the cloudlet should accommodate for the storage of multimedia and
+it's metadata.\newline
+
+There exists numerous types of databases which can be used. Unfortunately, there is a lack of literature whose interest is the analysis of the performance of these various databases in a cloudlet scenario.
+As mentioned above, as a consequence of this, we will look at databases suitable for embedded systems. Moniruzzaman et al\cite{RefWorks:100} states that NoSQL database management systems are useful when working with
+a huge quantity of data. This means that they are not of interest to this project. Other types of databases need to be considered.\newline
+
+It is essential to note that the type of database used affects data access control. The use of a relational database or a key-value pair database could mean that (1) users who have access to a specific
+multimedia object would be stored in the same database along the media in a relational database, (2) information about data access would be kept in the memory heap thus allowing frequent change, (3) information about
+data access, that is, file metadata would be kept as one string in the case of key-value pair databases. This should affect download and upload speeds.
+
+\subsection{Requirements}
+
+Olson\cite{RefWorks:91} mentions that the problem working with embedded systems is that they have approximately the same traits as desktop and server systems, however, they have limited resources. The writer also
+states that in such cases, one must choose a database that best matches the required specific needs. This can be understood as the process of shedding databases which have less or more requirements than the necessary
+ones. The requirements for a database for this project are concurrency, speed and minimal power consumption. It may be tempting for one to ``stand on the shoulders of giants'' by copying the choices made by large
+companies and using the databases they use for embedded/mobile devices. Smart-phone operating systems such as Android\footnote{\url{ http://developer.android.com/guide/topics/data/data-storage.html}} and
+iOS\footnote{\url{https://developer.apple.com/technologies/ios/data-management.html}} ship with SQLite. One might assume that SQLite is a great choice. However, analysis of the SQLite website\footnote{\url{http://www.sqlite.org/whentouse.html}} shows that SQLite does not work well with high concurrency and client-server applications. This highlights the point that it is essential to consider all necessary requirements when choosing a database.
+
+\subsection{BerkelyDB}
+The Berkeley database is a descendant of the UNIX utility ndbm, it was developed by Margo Seltzer and Mike Olson\cite{RefWorks:97}. Over the years it has grown to have functionality for concurrency, logging,
+transactions, and recovery\cite{RefWorks:98}. It is suitable for embedded systems for a number of reasons. Berkeley DB is designed for rapid start-up, for instance, recovery happens automatically as part of system
+nitialization. This makes the Berkeley database suitable for system where a shut down could potentially happen without warning and restarted\cite{RefWorks:98}. Seltzer\cite{RefWorks:99} states that it’s configuration
+is capable of being readily changed thus can support a number of different environments. The limitations of the Berkeley DB are that records in it are key-value pairs and the values are simply payloads.
+
+\subsection{MySQL}
+MySQL is a popular open source relational database management system. It supports blobs (Binary Large objects). This means that both the multimedia and it's metadata can be stored within the database. This gives
+the advantage that files reside in the database and cannot be orphaned from it. Baumann et al\cite{RefWorks:106}  have benchmarked relational databases to see the performance of read and write operations for blobs.
+The databases they were benchmarking are PostgreSQL and MySql. They used three different storage engines; InnoDB, ARCHIVE and MyISAM. Their MySQL results results show that for the write operation: ARCHIVE and MyISAM
+show were fast and shown appeared almost linear whereas with InnoDb, frequent large spikes occurred at random times and heights. The read operation results revealed that ARCHIVE was better, particularly for large blobs.
+The ``read times appear very regularly''\cite{RefWorks:106}, unlike the write operations. They reported that MySql showed the best result, and was very stable over the complete range as compared to PostgreSQL.
+Their recommendations for improving RDBMS performance when working with blobs are:
+
+
+\begin{itemize}
+\item ``Logging should be turned off whenever feasible to avoid
+generation of undo and redo log entries for large objects.
+\item Choice of both database page size, buffer pools size, and BLOB structures on disk should be dictated by the size of the BLOBs to be handled. For small BLOBs, smaller page size avoid wasting disk space. For
+large BLOBs, a large page size is helpful, which usually is limited to 32K. As these parameters often are fixed during database creation some upfront reflexion [sic] on the expected BLOB sizes is feasible.''
+\end{itemize}
+
+\noindent It is worth noting that the benchmarks were conducted on a 3.0 GHz Pentium 4 PC with with 512 MB main memory and 7,200 rpm IDE disks. It is possible that this results will not hold on an embedded system.
+The use of blobs will be beneficial only if it is faster and memory efficient to store the files in the database than storing the files independently on the filesystem and maintaining the metadata in the RDBMS.
+
+\section{Compression}
+Memory storage is not abundant in embedded systems. The use of external disks is not ideal. This is mostly because they require a power supply and may greatly increase battery consumption of the whole system. On
+the other hand, the data can be stored in compressed form thus a large SD card with negligible power consumption can be used.\\
+
+\noindent The raspberry PI can be used with an SD-card of size of up to 32GB\cite{raspwebsite}. When more
+storage space is needed, there are three approaches to facilitate for this. (1)
+One can use a relatively small memory medium and use compression. Compression has disadvantages, in that, it increases the round trip time and may require intensive computation thus causing a lot of battery
+consumption. (2) One can make use of a large USB stick or USB hard drive for storage. Large USB sticks or USB hard drives require a power supply. (3) One can use USB hard drives which have their own power source.
+This will great affect portability of the cloudlet. It is necessary that a strategy between (1) and (2) that uses less power be employed.
+
+
+\section{Network range}
+
+There are numerous WLAN standards, 802.11n being the newest. 802.11n has the fastest maximum speed, best signal range and is more resistant to signal interference from outside sources\cite{RefWorks:104}.
+Unfortunately, it is likely to interfere with near 802.11b/g based networks when multiple signals are used\cite{RefWorks:104}. Antennas and adapters using the 802.11n WLAN standard have an outdoor range of
+approximately 243 meters\cite{RefWorks:103}. This range, is greatly reduced indoors because of the walls. The range reduction is dependant on the materials that make up the wall. The Huawei WS320 Wi-Fi Repeater
+is an appliance that extends the coverage of WiFi network. It can increase a network by up to 100m\footnote{\url{http://www.huaweidevice.co.uk/mobile-broadband/Huawei-WS320/}}. Products such as this are relatively affordable.\newline
+
+The range of the wifi signal is limited. This has implications in dealing with mobile users. Users of cellphones are likely to go
+in and out of range. This and other issues concerning mobile computing are not new. A number of researchers including Evaggelia Pitoura
+and Bharat Bhargava presented their cases explaining the challenges as early as 1993. They presented their case in the paper ``Dealing with mobility:
+issues and research challenges”\cite{pitoura1993dealing}. ``Non-mobile systems [...] can be seen have hosts which have two modes of operations. A host can either be
+fully connected to a network or its disconnected"\cite[p. 4]{pitoura1993dealing}. In mobile
+systems, as was foreseen by Pitoura and Bhargava\cite{pitoura1993dealing}, it makes sense to have varying degrees of modes of operation. These can range from full disconnection,
+weak disconnection to string connection. These modes are determined by bandwidth.\newline
+
+The issues which face mobile systems as identified by Andrew Black and Jon Inouye\cite{black1996system} concern security, bandwidth and connectivity.
+They state that some applications make security decisions based on network topology. As an example, devices connected to the same
+subnet which is considered secure may choose not to use encryption when communicating. However, due to Mobile IP, the protocol that
+is designed to allow mobile devices to retain their IP addresses when moving across subnets, a security vulnerability might arise.
+Mobile devices could transfer unencrypted packets through an unreliable as they will be perceived as being in the same subnet. In the
+case of a cloudlet, there might be services which identify clients using the IP addresses. This has the implicit assumption that each
+IP identifies one mobile device. However, a mobile device may create a subnet thus an IP might identify a number of devices. This might
+create a security concern.\newline
+
+The overt issue with mobility which Black and Inouye\cite{black1996system} highlight is that mobile devices are likely to disconnect from the network.
+Also, even when devices are connected, the distance between the client and the cloudlet may vary thus “available bandwidth may change by three or four orders of magnitude”. They state that this problem is not one “that will yield a technological fix”\cite[p. 130]{black1996system}. Black and Inouye\cite{black1996system} suggest that in order to support mobility in information systems, applications and operating systems need to be modified.
+Early versions of email protocols required that mail be “pushed” to the receiver. This had the implication that receivers needed to always be
+connected to the same network. Current versions of email protocols now “pull” mail from a central location when needed. Services developed for the cloudlet at hand need to use the approach. Following this approach will do away with the possibility of data being sent and lost due to the
+receiver being disconnected from the network.
+
+\section{Discussion}
+The work done by Verbelen et al\cite{RefWorks:93} on computation offloading operates under the assumption that cloudlets have abundant resources.
+This project will do away with the assumption cloudlets have abundant resources and determine which technologies are suited for a resource constrained cloudlet, if any. We have observed that Raspberry Pis show great promise based on the results Tso et al\cite{tso2013glasgow} report for their PiCloud system. They have developed PiCloud which showed that it is possible to create a system with single board computers than can function as well as a commercial server. It did so except for computation intensive tasks. This work will determine the necessary compression schemes, device communication protocols and databases for an optimal cloudlet. We have already established certain tools are not suited for our proposed system as Moniruzzaman et al\cite{RefWorks:100} report that NoSQL databases are not suited for file sharing service in a cloudlet because they are better suited for large amounts of data. There aspects which will not be addressed, these include wireless jamming of cloudlets, as discussed by Satyanarayanan et al\cite{RefWorks:107}. That would only be necessary for hostile environments. The work done by Black and Inouye\cite{black1996system} will have influence the design of the system. The cloudlet will not ``push" content to the clients, however, the clients will ``pull" content to ensure that they always receieve it.

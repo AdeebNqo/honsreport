@@ -1,0 +1,46 @@
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\begin{savequote}[75mm] 
+Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo.
+\qauthor{Quoteauthor Lastname} 
+\end{savequote}
+
+\chapter{Use cases}
+\label{chapterthree}
+
+\section{M-novels in libraries}
+Stephen King, in his memoirs, writes that ``Books are portable magic"\cite[p. 96]{king2000writing}. A number of people cannot experience this magic however.This might be due to under resources libraries, no Internet access to access literature or perhaps unfamiliarity with the culture of reading. The last problem, unfortunately, cannot be easily solved and this project will not address it. This project will focus on allowing people to have access to literature. The Shuttleworth Foundation' m4lit project explored the potential of
+mobile devices for publishing and authoring books. It made use of an m-novel
+written by Sam Wilson, entitled Kontax. The goal of the m4Lit research project
+was to investigate how South African teens responded to Kontax. Walton's\cite{walton2010mobile} details the observations and results of the project. Walton\cite{walton2010mobile} uses the success of Kontax to conclude that ``teen mobile literacies and school literacies might be bridged to some extent for urban teens through the provision of mobile-accessible texts"\cite[p. \RNum{7}]{walton2010mobile}. We propose a use case, motivated by the m4lit, where m-novels will be be hosted on the cloudlet and mobile devices users can download and be able to consume the them. This m-novel distribution service will be characterized by the following:
+
+\begin{itemize}
+\item Relatively large number of users. It is then necessary that it does not fail when the number of users increase.
+
+\item There will be, on average, a large time in between downloads per user. It is highly unlikely that users will download numerous without pausing for at least 50 seconds in between each download.
+\end{itemize}
+
+This use can be generalized such that these m-novels can be distributed in a number of locations. These locations include taxis, informal and formal convenient stores, etc. Portability of the cloudlet becomes necessary for locations such as taxis.
+
+
+\section{Ad-hoc co-located collaborative work}
+Mobile computing systems have become an integral part of people lives. Cellphones, a form of a mobile computing system, have had helpful applications in education, citizen journalism, etc. Cell phones have been used to improve health services and delivery of health care, for instance Praekelt Foundation's TxtAlert has assisted in the reduction of the Lost To Follow Up rate, that is, ``patients that do not attend clinic appointments regularly, to less than 4\% of the 7000 patients on ARVs at the clinic"\footnote{http://www.praekeltfoundation.org/txtalert-partners.html}. We present a use case, originally presented by Luyten et al\cite{luyten2007ad}, which focuses on co-located mobile collaborations. Consider the scenario where a number of people working on an architectural project meet at the the construction
+site to to discuss the preliminary sketches. The goal of the
+meeting is to ``establish a consensus about the final style of
+the building for this construction site and collaboratively
+edit and annotate the current draft sketches"\cite[p. 507]{luyten2007ad}.
+Further suppose that the project leader has sketches on a laptop.
+The project leader's goal is to present his ideas to the colleagues
+and require them make annotations and suggestions to improve the design of the sketches. Using traditional methods, a single person can be delegated to capture
+suggestions from people and write them down. The second approach would be to
+rotate the laptop among the parties involved, each
+person adds annotations and passes the device to the next party. One can
+attempt to improve this by allowing all participants to access the sketches via
+a cloud based application. This is a far more effective approach, however,
+it raises issues with file ownership and might not be applicable in areas where
+there is no network coverage. We propose the use of the cloudlet to create a network that will allow clients to connect, make annotations and perform any other action necessary actions. The data will be centralized on the cloudlet and can be further migrated to a different storage medium such as a laptop. This service will be characterized by the following:
+
+\begin{itemize}
+\item Large number of users.
+\item Users are likely to have a number of suggestions, these interactions are likely to be short and the time between action made by a client will be small.
+\end{itemize}
