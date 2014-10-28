@@ -18,6 +18,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 \RequirePackage{listings}
+\usepackage[margin=0.984251969in]{geometry}
 
 \hypersetup{
 	linktocpage,
@@ -137,16 +138,53 @@ BoldItalicFont=ArnoPro-BoldItalic
 
 \renewcommand{\maketitle}{ 
 	\singlespacing
+	\begin{center}
+	Honors Project Report
+	\end{center}
 	\thispagestyle{empty}
-	\vspace*{\fill} \vspace{150pt} \begin{center}
-	\Huge \textcolor{Crimson}{\textit{\thetitle}} \normalsize \\ \sc \vspace{100pt}
-	a report presented \\ by\\
-	\theauthor\\ to\\ The \@department\\ 
+	\vspace*{\fill} \vspace{40pt} \begin{center}
+	\Huge \textcolor{Crimson}{\textit{\thetitle}} \normalsize \\ \sc \vspace{20pt}
+	by\\
+	\theauthor \\
+	\vspace{30pt}
+	
+	\begin{minipage}[t]{0.48\textwidth}
+    \textbf{Supervisor:}\\
+    Edwin Blake
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+    \begin{flushright}
+    \textbf{Co-supervisors:}\\
+    Pierre Benz\\
+    Thomas Reitmaier
+    \end{flushright}
+    \end{minipage}
 	\vspace{12pt}
+	
+	\begin{center}
+      \begin{tabular}{ | c | l || c | c | c |}
+        \hline
+         & \textbf{Category} & \textbf{Min} & \textbf{Max} & \textbf{Chosen} \\ \hline
+        1 & Requirement Analysis and Design & 0 & 20 & ?\\ \hline
+        2 & Theoretical Analysis & 0 & 25 & ?\\ \hline
+        3 & Experiment Design and Execution & 0 & 20 & ?\\ \hline
+        4 & System Development and Implementation & 0 & 15 & ?\\ \hline
+        5 & Results, Findings and Conclusion & 10 & 20 & ?\\ \hline
+        6 & Aim Formulation and Background Work & 10 & 15 & ?\\ \hline
+        7 & Quality of Report Writing and Presentation & \multicolumn{2}{c|}{10}  & 10\\ \hline
+        8 & Adherence to Project Proposal and Quality of Deliverables & \multicolumn{2}{c|}{10} & 10\\ \hline
+        9 & Overall General Project Evaluation & 0 & 10 & ?\\
+        \hline
+      \end{tabular}
+    \end{center}
+
+
 	%in partial fulfillment of the requirements\\ 
 	%for the degree of\\ \@degree\\ 
 	%in the subject of\\ \@field\\
-	\vspace{12pt}
+	\vspace{15pt}
+	\@department\\
 	\@university\\ \@universitycity, \@universitystate\\ 
 	\@degreemonth\ \@degreeyear
 	\end{center} \vspace*{\fill}
